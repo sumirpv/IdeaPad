@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, ActivityIndicator } from 'react-native';
 import { Button, FormInput } from 'react-native-elements';
 import InnerSection from './inner-section';
 import firebase from 'firebase';
-import { authInputChange}  from '../actions/index';
+import { authInputChange , login}  from '../actions';
 import { connect } from 'react-redux';
 
  class LoginForm extends Component {
@@ -18,6 +18,27 @@ import { connect } from 'react-redux';
         };
         firebase.initializeApp(config);
     }
+
+login(){
+    const {email, password} = this.props;
+    this.props.login({email, password});
+}
+
+showButton(){
+   if( this.props.loading){
+       return(
+           <View>
+               <ActivityIndicator size={'small'}/>
+           </View>
+       );
+   }
+   return(
+    <Button title="Login" 
+    onPress = { this.login.bind(this)}
+    backgroundColor="teal" />
+   )
+}
+
     render() {
         return (
             <View style={styles.container}>
@@ -33,9 +54,7 @@ import { connect } from 'react-redux';
                     secureTextEntry={true} />
                 </InnerSection>
                 <InnerSection>
-                    <Button title="Login" 
-                    onPress = { () => console.log(this.props.email)}
-                    backgroundColor="teal" />
+                    {this.showButton()}
                 </InnerSection>
             </View>
         );
@@ -45,12 +64,15 @@ import { connect } from 'react-redux';
 const mapStateToProp = state =>{
    return{
     email: state.auth.email,
-    password: state.auth.password
+    password: state.auth.password,
+    loading:  state.auth.loading,
+    user: state.auth.user,
+    error: state.auth.error
    }
 };
 
 
-export default connect(mapStateToProp, {authInputChange})(LoginForm);
+export default connect(mapStateToProp, {authInputChange, login})(LoginForm);
 
 
 const styles = {

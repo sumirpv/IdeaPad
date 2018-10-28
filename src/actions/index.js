@@ -1,8 +1,21 @@
 
+import firebase from 'firebase';
 
-export const authInputChange =({field, value}) =>{
-    return{
+export const authInputChange = ({ field, value }) => {
+    return {
         type: 'AUTH_INPUT_CHANGE',
-        payload: {field, value}
+        payload: { field, value }
+    }
+}
+export const login = ({ email, password }) => {
+    return (dispatch) => {
+        dispatch({type: 'LODING'})
+        firebase.auth().signInWithEmailAndPassword(email, password)
+            .then(user => {
+                dispatch({ type: 'LOGIN_SUCESS', payload: user });
+            })
+            .catch(function (error) {
+                dispatch({type:'LOGIN _FAILURE'});
+            });
     }
 }
