@@ -39,6 +39,16 @@ showButton(){
    )
 }
 
+showError(){
+    if( this.props.error){
+        return(
+            <FormValidationMessage>
+                {this.props.error}
+            </FormValidationMessage>
+        )
+    }
+}
+
     render() {
         return (
             <View style={styles.container}>
@@ -53,6 +63,7 @@ showButton(){
                     onChangeText ={text => this.props.authInputChange({'field' : 'password' ,'value': text })}
                     secureTextEntry={true} />
                 </InnerSection>
+                {/* {this.showError()} */}
                 <InnerSection>
                     {this.showButton()}
                 </InnerSection>
