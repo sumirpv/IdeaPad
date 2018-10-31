@@ -2,22 +2,10 @@ import React, { Component } from 'react';
 import { View, ActivityIndicator } from 'react-native';
 import { Button, FormInput } from 'react-native-elements';
 import InnerSection from './inner-section';
-import firebase from 'firebase';
 import { authInputChange , login}  from '../actions';
 import { connect } from 'react-redux';
 
  class LoginForm extends Component {
-    componentDidMount() {
-        const config = {
-            apiKey: "AIzaSyDBGLSO6Do4yare2S7MxtqQ3v63Tq7pjo8",
-            authDomain: "my-ideapad.firebaseapp.com",
-            databaseURL: "https://my-ideapad.firebaseio.com",
-            projectId: "my-ideapad",
-            storageBucket: "my-ideapad.appspot.com",
-            messagingSenderId: "702893693507"
-        };
-        firebase.initializeApp(config);
-    }
 
 login(){
     const {email, password} = this.props;
