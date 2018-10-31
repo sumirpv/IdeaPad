@@ -3,6 +3,7 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
+import config from '../config'
 import LoginForm from '../src/components/login-form';
 import Header from '../src/components/header';
 import { Provider } from 'react-redux';
@@ -11,19 +12,10 @@ import reducers from '../src/reducers';
 import ReduxThunk from 'redux-thunk';
 import firebase from 'firebase';
 
-
-
 export default class HomeScreen extends React.Component {
   componentDidMount() {
-    const config = {
-        apiKey: "AIzaSyDBGLSO6Do4yare2S7MxtqQ3v63Tq7pjo8",
-        authDomain: "my-ideapad.firebaseapp.com",
-        databaseURL: "https://my-ideapad.firebaseio.com",
-        projectId: "my-ideapad",
-        storageBucket: "my-ideapad.appspot.com",
-        messagingSenderId: "702893693507"
-    };
-    firebase.initializeApp(config);
+  firebase.initializeApp(config);
+
 }
 
   render() {
