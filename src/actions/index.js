@@ -19,3 +19,20 @@ export const login = ({ email, password }) => {
             });
     }
 }
+
+export const ideaInputChange = ({ field, value }) => {
+    return {
+        type: 'IDEA_INPUT_CHANGE',
+        payload: { field, value }
+    };
+}
+
+export const createIdea =({title, idea}) =>{
+    const {uid} = firebase.auth().currentUser;
+    return(dispatch) => {
+        firebase.database().ref(`/userIdeas/${uid}/ideas`)
+        .push({title, idea})
+        .then(() => dispatch({type: 'NEW_IDEA'}));
+    }
+
+}

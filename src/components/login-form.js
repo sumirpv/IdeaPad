@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { View, ActivityIndicator } from 'react-native';
 import { Button, FormInput } from 'react-native-elements';
 import InnerSection from './inner-section';
+import IdeaPadForm from './ideapad-form';
+import IdeaList  from './idea-list';
 import { authInputChange , login}  from '../actions';
 import { connect } from 'react-redux';
 
@@ -38,6 +40,13 @@ showError(){
 }
 
     render() {
+        if(this.props.user){
+            return(
+                <IdeaList/>
+            )
+        }
+
+
         return (
             <View style={styles.container}>
                 <InnerSection>
