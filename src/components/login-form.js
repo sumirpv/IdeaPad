@@ -2,13 +2,16 @@ import React, { Component } from 'react';
 import { View, ActivityIndicator } from 'react-native';
 import { Button, FormInput } from 'react-native-elements';
 import InnerSection from './inner-section';
-import IdeaPadForm from './ideapad-form';
-import IdeaList  from './idea-list';
 import { authInputChange , login}  from '../actions';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 
  class LoginForm extends Component {
-
+componentWillReceiveProps(nextProps){
+    if( !_.isEmpty(nextProps.user)){
+        this.props.navigation.navigate('App');
+    }
+}
 login(){
     const {email, password} = this.props;
     this.props.login({email, password});
@@ -40,13 +43,6 @@ showError(){
 }
 
     render() {
-        if(this.props.user){
-            return(
-                <IdeaList/>
-            )
-        }
-
-
         return (
             <View style={styles.container}>
                 <InnerSection>

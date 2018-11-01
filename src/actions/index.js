@@ -36,3 +36,14 @@ export const createIdea =({title, idea}) =>{
     }
 
 }
+
+export const getIdeas =() =>{
+    const {uid} = firebase.auth().currentUser;
+    return(dispatch) => {
+        firebase.database().ref(`/userIdeas/${uid}/ideas`)
+        .on('value', snapshot => {
+            dispatch({type:'GET_IDEAS', payload:snapshot.val()});
+        });
+    }
+
+}
