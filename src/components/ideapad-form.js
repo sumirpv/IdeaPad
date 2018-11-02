@@ -6,13 +6,6 @@ import { ideaInputChange , createIdea}  from '../actions';
 import { connect } from 'react-redux';
 
  class IdeaPadForm extends Component {
-
-create(){
-    console.log( "Loging on firebase");
-    const {title, idea} = this.props;
-    this.props.createIdea({title, idea});
-}
-
     render() {
         return (
             <View style={styles.container}>
@@ -28,11 +21,6 @@ create(){
                     multiline ={true}
                     inputStyle ={{height:200}}
                     />
-                </InnerSection>
-                <InnerSection>
-                <Button title="Submit Your Ideas" 
-    onPress = { this.create.bind(this)}
-    backgroundColor="teal" />
                 </InnerSection>
             </View>
         );

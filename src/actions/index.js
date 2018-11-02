@@ -41,9 +41,28 @@ export const getIdeas =() =>{
     const {uid} = firebase.auth().currentUser;
     return(dispatch) => {
         firebase.database().ref(`/userIdeas/${uid}/ideas`)
-        .on('value', snapshot => {
+        .on('value', (snapshot) => {
             dispatch({type:'GET_IDEAS', payload:snapshot.val()});
         });
     }
+}
+export const editIdea =({title, idea, id}) =>{
+    const {uid} = firebase.auth().currentUser;
+    return(dispatch) => {
+        firebase.database()
+        .ref(`/userIdeas/${uid}/ideas/${id}`)
+        .set({title, idea})
+        .then(() => dispatch({type: 'IDEA_UPDATE'}));    
+    }
+}
 
+export const deleteIdea =({id}) =>{
+    const {uid} = firebase.auth().currentUser;
+    return(dispatch) => {
+        firebase.database()
+        .ref(`/userIdeas/${uid}/ideas/${id}`)
+        .remove()
+        .then(() => dispatch({type: 'IDEA_DELETE'}));
+            
+    }
 }

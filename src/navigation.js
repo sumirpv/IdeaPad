@@ -2,7 +2,8 @@ import React from 'react';
 import { createStackNavigator, createSwitchNavigator, } from 'react-navigation';
 import LoginForm from './components/login-form';
 import IdeaList from './components/idea-list';
-import IdeaPadForm from './components/ideapad-form';
+import AddIdea from './components/add-idea';
+import EditIdea from './components/edit-idea';
 import { Icon } from 'react-native-elements';
 
 
@@ -35,9 +36,15 @@ const AppStack = createStackNavigator({
         }
     },
     AddIdeas:{
-        screen: IdeaPadForm,
+        screen: AddIdea,
         navigationOptions:{
             headerTitle: 'Add Your Ideas'
+        }
+    },
+    EditIdea:{
+        screen: EditIdea,
+        navigationOptions:{
+            headerTitle: 'Change Your Ideas'
         }
     }
 });

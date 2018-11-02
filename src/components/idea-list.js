@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import {getIdeas} from '../actions';
 import _ from 'lodash';
 
-export default class IdeaList extends Component {
+class IdeaList extends Component {
 componentDidMount(){
   this.props.getIdeas();
 }
@@ -15,6 +15,7 @@ renderList(){
       <ListItem 
       key= {idea.id}
       title = {idea.title}
+      onPress={() => this.props.navigation.navigate('EditIdea', {idea})}
       leftIcon={{name: 'lightbulb-outline'}}
       />
     )
