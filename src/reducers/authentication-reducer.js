@@ -4,7 +4,7 @@ const initailState = {
     email: '',
     password: '',
     user: {},
-    error: '', 
+    error: '',
     loading: false
 };
 
@@ -19,7 +19,7 @@ export default (state = initailState, action) => {
             return { ...state, user: action.payload, loading: false };
 
         case 'LOADING':
-            return {...state, loading: true}
+            return { ...state, loading: true }
         case 'LOGIN _FAILURE':
             //console.log("Failure");
 

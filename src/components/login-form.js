@@ -41,7 +41,6 @@ showError(){
         )
     }
 }
-
     render() {
         return (
             <View style={styles.container}>
@@ -75,9 +74,7 @@ const mapStateToProp = state =>{
    }
 };
 
-
 export default connect(mapStateToProp, {authInputChange, login})(LoginForm);
-
 
 const styles = {
     container: {

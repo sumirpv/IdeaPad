@@ -8,42 +8,42 @@ import { Icon } from 'react-native-elements';
 
 
 const AuthStack = createStackNavigator({
-    Login:{
+    Login: {
         screen: LoginForm,
-        navigationOptions:{
-            headerTitle:'Login'
+        navigationOptions: {
+            headerTitle: 'Login'
         }
     }
 });
 
 const AppStack = createStackNavigator({
-    Ideas:{
-        screen:IdeaList,
-        navigationOptions:({navigation}) =>{
-            return{
+    Ideas: {
+        screen: IdeaList,
+        navigationOptions: ({ navigation }) => {
+            return {
                 title: 'Your IdeaPad',
-                headerRight:(
+                headerRight: (
                     <Icon
-                    type='evilicon'
-                    name='plus'
-                    size ={30}
-                    onPress={() => navigation.navigate('AddIdeas')}
-                    iconStyle={{padding:10}}
+                        type='evilicon'
+                        name='plus'
+                        size={30}
+                        onPress={() => navigation.navigate('AddIdeas')}
+                        iconStyle={{ padding: 10 }}
                     />
                 ),
                 headerLeft: null
             }
         }
     },
-    AddIdeas:{
+    AddIdeas: {
         screen: AddIdea,
-        navigationOptions:{
+        navigationOptions: {
             headerTitle: 'Add Your Ideas'
         }
     },
-    EditIdea:{
+    EditIdea: {
         screen: EditIdea,
-        navigationOptions:{
+        navigationOptions: {
             headerTitle: 'Change Your Ideas'
         }
     }

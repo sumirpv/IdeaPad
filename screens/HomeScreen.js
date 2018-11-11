@@ -13,15 +13,15 @@ import AppNavigator from '../src/navigation';
 
 export default class HomeScreen extends React.Component {
   componentDidMount() {
-  firebase.initializeApp(config);
+    firebase.initializeApp(config);
 
-}
+  }
 
   render() {
-    const store = createStore(reducers , {} , applyMiddleware(ReduxThunk));
+    const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
     return (
       <Provider store={store}>
-        <AppNavigator/>
+        <AppNavigator />
       </Provider>
     );
   }

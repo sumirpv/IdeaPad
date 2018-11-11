@@ -9,13 +9,13 @@ export const authInputChange = ({ field, value }) => {
 }
 export const login = ({ email, password }) => {
     return (dispatch) => {
-        dispatch({type: 'LOADING'})
+        dispatch({ type: 'LOADING' })
         firebase.auth().signInWithEmailAndPassword(email, password)
             .then(user => {
                 dispatch({ type: 'LOGIN_SUCESS', payload: user });
             })
             .catch(function (error) {
-                dispatch({type:'LOGIN _FAILURE'});
+                dispatch({ type: 'LOGIN _FAILURE' });
             });
     }
 }
@@ -27,42 +27,42 @@ export const ideaInputChange = ({ field, value }) => {
     };
 }
 
-export const createIdea =({title, idea}) =>{
-    const {uid} = firebase.auth().currentUser;
-    return(dispatch) => {
+export const createIdea = ({ title, idea }) => {
+    const { uid } = firebase.auth().currentUser;
+    return (dispatch) => {
         firebase.database().ref(`/userIdeas/${uid}/ideas`)
-        .push({title, idea})
-        .then(() => dispatch({type: 'NEW_IDEA'}));
+            .push({ title, idea })
+            .then(() => dispatch({ type: 'NEW_IDEA' }));
     }
 
 }
 
-export const getIdeas =() =>{
-    const {uid} = firebase.auth().currentUser;
-    return(dispatch) => {
+export const getIdeas = () => {
+    const { uid } = firebase.auth().currentUser;
+    return (dispatch) => {
         firebase.database().ref(`/userIdeas/${uid}/ideas`)
-        .on('value', (snapshot) => {
-            dispatch({type:'GET_IDEAS', payload:snapshot.val()});
-        });
+            .on('value', (snapshot) => {
+                dispatch({ type: 'GET_IDEAS', payload: snapshot.val() });
+            });
     }
 }
-export const editIdea =({title, idea, id}) =>{
-    const {uid} = firebase.auth().currentUser;
-    return(dispatch) => {
+export const editIdea = ({ title, idea, id }) => {
+    const { uid } = firebase.auth().currentUser;
+    return (dispatch) => {
         firebase.database()
-        .ref(`/userIdeas/${uid}/ideas/${id}`)
-        .set({title, idea})
-        .then(() => dispatch({type: 'IDEA_UPDATE'}));    
+            .ref(`/userIdeas/${uid}/ideas/${id}`)
+            .set({ title, idea })
+            .then(() => dispatch({ type: 'IDEA_UPDATE' }));
     }
 }
 
-export const deleteIdea =({id}) =>{
-    const {uid} = firebase.auth().currentUser;
-    return(dispatch) => {
+export const deleteIdea = ({ id }) => {
+    const { uid } = firebase.auth().currentUser;
+    return (dispatch) => {
         firebase.database()
-        .ref(`/userIdeas/${uid}/ideas/${id}`)
-        .remove()
-        .then(() => dispatch({type: 'IDEA_DELETE'}));
-            
+            .ref(`/userIdeas/${uid}/ideas/${id}`)
+            .remove()
+            .then(() => dispatch({ type: 'IDEA_DELETE' }));
+
     }
 }
